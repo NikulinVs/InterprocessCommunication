@@ -14,7 +14,7 @@
 int main(void)
 {
   sem_t* sem;
-	int fifo_fd;
+  int fifo_fd;
 
   sem = sem_open("/semsem", O_CREAT | O_EXCL, S_IRWXU, 0);
   if(sem == SEM_FAILED)
@@ -22,23 +22,23 @@ int main(void)
     printf("Something went wrong with semaphore...\n");
   }
 
-	if(mkfifo("testfifo", S_IRWXU) != 0)
-	{
-		printf("Something went wrong with creating a fifo...");
-	}
+  if(mkfifo("testfifo", S_IRWXU) != 0)
+  {
+    printf("Something went wrong with creating a fifo...");
+  }
 
-	fifo_fd = open("testfifo", O_WRONLY);
+  fifo_fd = open("testfifo", O_WRONLY);
 
-	write(fifo_fd, "hello", 5);
+  write(fifo_fd, "hello", 5);
 
   sem_wait(sem);
 
-	close(fifo_fd);
+  close(fifo_fd);
 
   sem_close(sem);
-	sem_unlink("/semsem");
+  sem_unlink("/semsem");
 
-	unlink("testfifo");
+  unlink("testfifo");
 
   return 0;
 }

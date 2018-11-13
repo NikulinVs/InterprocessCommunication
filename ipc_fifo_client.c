@@ -14,9 +14,9 @@
 int main(void)
 {
   sem_t* sem;
-	int fifo_fd;
-	char buf[BUFFER_SIZE];
-	int num_read;
+  int fifo_fd;
+  char buf[BUFFER_SIZE];
+  int num_read;
 
   sem = sem_open("/semsem", 0);
   if(sem == SEM_FAILED)
@@ -24,19 +24,19 @@ int main(void)
     printf("Something went wrong with semaphore...\n");
   }
 
-	fifo_fd = open("testfifo", O_RDONLY);
+  fifo_fd = open("testfifo", O_RDONLY);
 
-	num_read = read(fifo_fd, buf, BUFFER_SIZE);
-	if(num_read < 0)
-	{
-		printf("Error in reading!\n");
-	}
+  num_read = read(fifo_fd, buf, BUFFER_SIZE);
+  if(num_read < 0)
+  {
+    printf("Error in reading!\n");
+  }
 
-	printf("The host have sent me the following: %s\n", buf);
+  printf("The host have sent me the following: %s\n", buf);
 
   sem_post(sem);
 
-	close(fifo_fd);
+  close(fifo_fd);
 
   sem_close(sem);
 
