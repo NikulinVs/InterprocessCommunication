@@ -11,3 +11,6 @@ For now it is
 
 Synchronization is done via POSIX Semaphores.
 
+# Basic glut renderer #
+
+The example of initializing of a render loop is provided in `render.c`.
