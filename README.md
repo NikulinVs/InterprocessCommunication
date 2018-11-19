@@ -11,7 +11,3 @@ For now it is
 
 Synchronization is done via POSIX Semaphores.
 
-
-Please notice that `makefile` is **not optimized at all**. In you project you
-should use wildcards, variables and incorporated bash commands to make the
-makefile as tiny as possible.
